@@ -17,6 +17,9 @@ function getNextValidIndex(index, length) {
   return incrementedIndex > length - 1 ? 0 : incrementedIndex;
 }
 export default {
+  created() {
+    this.$emit('partSelected', this.selectedPart);
+  },
   data() {
     return { selectedPartIndex: 0 };
   },
@@ -44,12 +47,14 @@ export default {
         this.selectedPartIndex,
         this.parts.length,
       );
+      this.$emit('partSelected', this.selectedPart);
     },
     selectPreviousPart() {
       this.selectedPartIndex = getPreviousValidIndex(
         this.selectedPartIndex,
         this.parts.length,
       );
+      this.$emit('partSelected', this.selectedPart);
     },
   },
 };

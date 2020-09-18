@@ -16,6 +16,7 @@
         <PartsSelector
           :parts="availableParts.heads"
           position="top"
+          @partSelected="part => selectedRobot.head = part"
         />
       </div>
     </div>
@@ -23,20 +24,24 @@
       <PartsSelector
         :parts="availableParts.arms"
         position='left'
+        @partSelected="part => selectedRobot.leftArm = part"
       />
       <PartsSelector
         :parts="availableParts.torsos"
         position='center'
+        @partSelected="part => selectedRobot.torso = part"
       />
       <PartsSelector
         :parts="availableParts.arms"
         position='right'
+        @partSelected="part => selectedRobot.rightArm = part"
       />
     </div>
     <div class="bottom-row">
       <PartsSelector
         :parts="availableParts.bases"
         position='bottom'
+        @partSelected="part => selectedRobot.base = part"
       />
     </div>
     <div class="cart">
