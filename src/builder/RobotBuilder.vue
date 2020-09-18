@@ -2,7 +2,13 @@
   <div class="content">
     <button class="add-to-cart" @click="addToCart()">Add To Cart</button>
     <div class="top-row">
-      <div class="top part" :style="headBorderStyle">
+      <!-- style Binding -->
+      <!-- <div class="top part" :style="headBorderStyle">    -->
+
+      <!-- class Binding support array in class binding-->
+      <!-- <div class="top part" :class="{'sale-border': selectedRobot.head.onSale}"> -->
+      <!-- class Binding with computed-->
+      <div :class="[headBorderClass, 'top', 'part']">
         <div class="robot-name">
           {{ selectedRobot.head.title }}
           <span v-if="selectedRobot.head.onSale" class="sale" >Sale!</span>
@@ -58,6 +64,7 @@
 
 <script>
 import availableParts from '../data/parts';
+import createdHookMixin from './created_hook_mixin';
 
 function getPreviousValidIndex(index, length) {
   const deprecatedIndex = index - 1;
@@ -71,6 +78,9 @@ function getNexValidIndex(index, length) {
 
 export default {
   name: 'RobotBuilder',
+  // created() {
+  //   console.log('compnent created');
+  // },
   data() {
     return {
       availableParts,
@@ -82,6 +92,7 @@ export default {
       selectedBottom: 0,
     };
   },
+  mixins: [createdHookMixin],
   computed: {
     selectedRobot() {
       return {
@@ -98,6 +109,9 @@ export default {
           ? '3px solid red'
           : '3px solid #aaa',
       };
+    },
+    headBorderClass() {
+      return this.selectedRobot.head.onSale ? 'sale-border' : '';
     },
   },
   methods: {
@@ -174,15 +188,17 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 .part {
   position: relative;
   width: 165px;
   height: 165px;
   border: 3px solid #aaa;
 }
-.part img {
-  width: 165px;
+.part {
+  img {
+    width: 165px;
+  }
 }
 .top-row {
   display: flex;
@@ -295,5 +311,8 @@ td, th {
 
 .cost {
   text-align: right;
+}
+.sale-border {
+  border: 3px solid red;
 }
 </style>
