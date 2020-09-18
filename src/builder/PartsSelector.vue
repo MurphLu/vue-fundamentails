@@ -20,6 +20,9 @@ export default {
   created() {
     this.emitSelectedPart();
   },
+  updated() {
+    this.emitSelectedPart();
+  },
   data() {
     return { selectedPartIndex: 0 };
   },
@@ -50,14 +53,12 @@ export default {
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
     selectPreviousPart() {
       this.selectedPartIndex = getPreviousValidIndex(
         this.selectedPartIndex,
         this.parts.length,
       );
-      this.emitSelectedPart();
     },
   },
 };
