@@ -54,7 +54,7 @@ export default {
   name: 'Cart',
   computed: {
     cart() {
-      return this.$store.state.robot.cart;
+      return this.$store.state.robots.cart;
     },
     cartSaleItems() {
       return this.$store.getters.cartSaleItems;

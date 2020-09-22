@@ -47,7 +47,7 @@ export default {
   },
   computed: {
     cart() {
-      return this.$store.state.robot.cart;
+      return this.$store.state.robots.cart;
     },
   },
 };

@@ -83,7 +83,7 @@ export default {
     }
   },
   created() {
-    this.$store.dispatch('getParts');
+    this.$store.dispatch('robots/getParts');
   },
   components: {
     PartsSelector,
@@ -105,7 +105,7 @@ export default {
   mixins: [createdHookMixin],
   computed: {
     availableParts() {
-      return this.$store.state.robot.parts;
+      return this.$store.state.robots.parts;
     },
     headBorderStyle() {
       return {
@@ -126,7 +126,7 @@ export default {
       + robot.torso.cost
       + robot.rightArm.cost
       + robot.base.cost;
-      this.$store.dispatch('addRobotToCart', { ...robot, cost })
+      this.$store.dispatch('robots/addRobotToCart', { ...robot, cost })
         .then(() => this.$router.push('/cart'));
       this.addedToCard = true;
     },
