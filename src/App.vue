@@ -45,6 +45,7 @@
 
 <script>
 // import RobotBuilder from './builder/RobotBuilder.vue';
+import { mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -52,15 +53,20 @@ export default {
     // RobotBuilder,
   },
   computed: {
-    rootFoo() {
-      return this.$store.state.foo;
-    },
-    robotFoo() {
-      return this.$store.state.robots.foo;
-    },
-    userFoo() {
-      return this.$store.state.users.foo;
-    },
+    ...mapState({
+      rootFoo: 'foo',
+      robotFoo: (state) => state.robots.foo,
+    }),
+    ...mapState('users', { userFoo: 'foo' }),
+    // rootFoo() {
+    //   return this.$store.state.foo;
+    // },
+    // robotFoo() {
+    //   return this.$store.state.robots.foo;
+    // },
+    // userFoo() {
+    //   return this.$store.state.users.foo;
+    // },
     rootGetterFoo() {
       return this.$store.getters.foo;
     },
