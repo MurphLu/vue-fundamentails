@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    RootFoo {{ rootFoo }} <br>
+    RobotFoo {{ robotFoo }} <br>
+    UserFoo {{ userFoo }} <br>
+    RootFooGetters {{ rootGetterFoo }} <br>
+    RobotFooGetters {{ robotGetterFoo }} <br>
+    UserFooGetters {{ userGetterFoo }} <br>
     <header>
       <nav>
         <ul>
@@ -46,6 +52,24 @@ export default {
     // RobotBuilder,
   },
   computed: {
+    rootFoo() {
+      return this.$store.state.foo;
+    },
+    robotFoo() {
+      return this.$store.state.robots.foo;
+    },
+    userFoo() {
+      return this.$store.state.users.foo;
+    },
+    rootGetterFoo() {
+      return this.$store.getters.foo;
+    },
+    robotGetterFoo() {
+      return this.$store.getters['robots/foo'];
+    },
+    userGetterFoo() {
+      return this.$store.getters['users/foo'];
+    },
     cart() {
       return this.$store.state.robots.cart;
     },
