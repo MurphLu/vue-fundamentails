@@ -45,7 +45,7 @@
 
 <script>
 // import RobotBuilder from './builder/RobotBuilder.vue';
-import { mapState } from 'vuex';
+import { mapGetters, mapState } from 'vuex';
 
 export default {
   name: 'App',
@@ -58,24 +58,9 @@ export default {
       robotFoo: (state) => state.robots.foo,
     }),
     ...mapState('users', { userFoo: 'foo' }),
-    // rootFoo() {
-    //   return this.$store.state.foo;
-    // },
-    // robotFoo() {
-    //   return this.$store.state.robots.foo;
-    // },
-    // userFoo() {
-    //   return this.$store.state.users.foo;
-    // },
-    rootGetterFoo() {
-      return this.$store.getters.foo;
-    },
-    robotGetterFoo() {
-      return this.$store.getters['robots/foo'];
-    },
-    userGetterFoo() {
-      return this.$store.getters['users/foo'];
-    },
+    ...mapGetters({ rootGetterFoo: 'foo' }),
+    ...mapGetters('robots', { robotGetterFoo: 'foo' }),
+    ...mapGetters('users', { userGetterFoo: 'foo' }),
     cart() {
       return this.$store.state.robots.cart;
     },
