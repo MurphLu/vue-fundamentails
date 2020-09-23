@@ -1,10 +1,18 @@
 /* eslint-disable no-param-reassign */
+function applyBinding(element, binding) {
+  Object.keys(binding.value).forEach((position) => {
+    element.style[position] = binding.value[position];
+  });
+  element.style.position = 'absolute';
+}
+
 export default {
-  bind: (element, binding) => {
+  // detail see https://vuejs.org/v2/guide/custom-directive.html
+  bind: (element, binding) => { // only once when create
     // if (binding.arg !== 'position') return;
-    Object.keys(binding.value).forEach((position) => {
-      element.style[position] = binding.value[position];
-    });
-    element.style.position = 'absolute';
+    applyBinding(element, binding);
+  },
+  update: (element, binding) => {
+    applyBinding(element, binding);
   },
 };
