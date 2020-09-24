@@ -20,5 +20,15 @@ npm run build
 npm run lint
 ```
 
+### deep link handle
+for express serve:
+use 
+```
+const express = require("express");
+const history = require('connect-history-api-fallback'); 
+const app = express();
+app.use(history({index: 'index.html'}));
+```
+
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
